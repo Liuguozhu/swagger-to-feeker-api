@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright (c) 2015. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  ~ Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
+  ~ Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
+  ~ Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
+  ~ Vestibulum commodo. Ut rhoncus gravida arcu.
+  -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="feeker.net.tools.dao.NodeDao">
+
+    <resultMap type="feeker.net.tools.bean.Node" id="nodeList">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="name" column="name"/>
+        <result property="level" column="level"/>
+        <result property="pid" column="pid"/>
+        <result property="remark" column="remark"/>
+        <result property="status" column="status"/>
+        <result property="group_id" column="group_id"/>
+    </resultMap>
+
+    <resultMap type="feeker.net.tools.bean.Node" id="oneNode">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="name" column="name"/>
+        <result property="level" column="level"/>
+        <result property="pid" column="pid"/>
+        <result property="remark" column="remark"/>
+        <result property="status" column="status"/>
+        <result property="group_id" column="group_id"/>
+    </resultMap>
+
+
+    <select id="selectById" resultMap="oneNode">
+        select * from node where id = #{id}
+    </select>
+    <select id="selectByTitleAndPid" resultMap="oneNode" >
+        select * from node where title=#{0} and pid = #{1} and name = #{2}
+    </select>
+    <select id="selectAll" resultMap="nodeList">
+        select * from node
+    </select>
+
+    <insert id="addNode" parameterType="Node" useGeneratedKeys="true" keyProperty="id">
+        insert into node(title,name,level,pid,remark,status,group_id)
+        values(#{title},#{name},#{level},#{pid},#{remark},#{status},#{group_id})
+    </insert>
+    <update id="updateNode" parameterType="Node">
+        update node set title=#{title},name=#{name},level=#{level},pid=#{pid},remark=#{remark},status=#{status},group_id=#{group_id} where id=#{id}
+    </update>
+
+</mapper>

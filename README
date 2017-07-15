@@ -1,0 +1,26 @@
+ #swagger-to-feeker-api
+ Maven项目，飞客互动生成接口文档（API）工具
+
+项目编译要求：
+jdk 1.6以上版本
+字符编码 UTF-8(window->preference->general->workspace->encoding)
+
+SVN需要忽略的文件类型(window->preference->team->ignore resources)：
+target目录
+logs目录
+.settings目录
+.project文件
+.classpath文件
+.idea文件
+.iml文件
+
+关于代码规范要求(参考)：
+https://www.douban.com/note/82618786/
+*方法参数超过4个，就封装成一个业务对象
+
+
+1.SwaggerToJspWiki将获取的swaggerJson生成jspWiki页面信息，发送http请求到jspWiki服务器
+1.1 AppendPage 单独增加一个或多个页面 到jspWiki服务器
+1.2 DeletePage 单独删除一个或多个页面 到jspWiki服务器
+
+2.SwaggerToHtml,将获取的swaggerJson生成html页面
